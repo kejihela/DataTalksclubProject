@@ -115,7 +115,7 @@ def train_model(
 @flow
 def main_flow_s3():
 
-    mlflow.set_tracking_uri("sqlite:///mlflow.db")
+    mlflow.set_tracking_uri("Orchestrate_s3\mlflow.db")
     
     mlflow.set_experiment("Flight prediction time")
     
