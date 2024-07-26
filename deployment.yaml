@@ -4,6 +4,6 @@ deployments:
   work_pool: 
     name: DataTalksClub
 - name: flight_s3_data
-  entrypoint: Orchestrate_s3\orchestrate_S3_FlightPricePrediction.py:main_flow_s3
+  entrypoint: orchestrate_S3_FlightPricePrediction.py:main_flow_s3
   work_pool: 
     name: DataTalksClub
