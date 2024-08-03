@@ -3,16 +3,23 @@ from flask import Flask, jsonify, request
 import mlflow
 
 
-logged_model = 'runs:/224f5aac05a64508919581fd1889e2ba/model'
+
+#mlflow.set_tracking_uri("http://127.0.0.1:5000")
+
+#mlflow.set_experiment("S3-deployment-2")
+RUN_ID="16aa4ec2992e4def9a579a09802f7d54"
+logged_model = f's3://mlop-zoomcamp-adebayo/3/{RUN_ID}/artifacts/model'
+
 
 # Load model as a PyFuncModel.
 loaded_model = mlflow.pyfunc.load_model(logged_model)
 
 
+app = Flask("Flight-prediction")
+
 
 def predict(features):
-    data = dv.transform(features)
-    pred = loaded_model.predict(data)
+    pred = loaded_model.predict(features)
     return float(pred)
 
 @app.route('/predict', methods=["POST"])
@@ -22,7 +29,8 @@ def predict_endpoint():
     pred = predict(data)
 
     result =  {
-        'duration': pred
+        'duration': pred,
+        'Run_id' : RUN_ID
     }
     return jsonify(result)
 
