@@ -7,7 +7,7 @@ datasources:
   - name: PostgreSQL
     type: postgres
     access: proxy
-    url: db.:2020
+    url: db.:5432
     database: test
     user: postgres
     secureJsonData:
